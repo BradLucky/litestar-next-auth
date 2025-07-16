@@ -4,7 +4,7 @@ This is a simple app to work out issues with authentication between Litestar and
 
 Pre-requisites:
 1. Clone this repo
-1. [https://docs.astral.sh/uv/getting-started/installation/](Install `uv`)
+1. [Install `uv`](https://docs.astral.sh/uv/getting-started/installation/)
 
 ### Start backend server
 
