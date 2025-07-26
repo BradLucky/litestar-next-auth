@@ -44,7 +44,7 @@ _Note: clear cookies to ensure this is a clean test_
 1. Return to [http://localhost:8000/schema/rapidoc#get-/user]("GetUser") and see that you still see the protected data.
 
 ## Login Test
-(Resolved in 773ff2d70ab2e7b3fcdceaa31fad84de28666af6)
+(Resolved in [773ff2d](https://github.com/BradLucky/litestar-next-auth/commit/773ff2d70ab2e7b3fcdceaa31fad84de28666af6))
 
 ### Backend Login
 Observe that the backend server allows you to access protected endpoints as much as you want.
