@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Any, Literal
 from uuid import UUID, uuid4
 
-from litestar import Litestar, Request, get, post
+from litestar import Litestar, Request, Response, get, post
 from litestar.config.cors import CORSConfig
 from litestar.connection import ASGIConnection
 from litestar.exceptions import NotAuthorizedException
@@ -57,6 +57,14 @@ async def login(data: UserLoginPayload, request: Request[Any, Any, Any]) -> User
     return MOCK_DB[user_id]
 
 
+@post("/logout")
+async def logout(request: Request) -> Response:
+    if request.session:
+        request.clear_session()
+
+    return Response({"message": "OK"}, status_code=200)
+
+
 @get("/user", sync_to_thread=False)
 def get_user(request: Request[User, dict[Literal["user_id"], str], Any]) -> Any:
     return request.user
@@ -65,7 +73,7 @@ def get_user(request: Request[User, dict[Literal["user_id"], str], Any]) -> Any:
 session_auth = SessionAuth[User, ClientSideSessionBackend](
     retrieve_user_handler=retrieve_user_handler,
     session_backend_config=CookieBackendConfig(secret=urandom(16)),
-    exclude=["/login", "/schema"],
+    exclude=["/login", "/schema", "/logout"],
 )
 
 cors_config = CORSConfig(
@@ -74,7 +82,7 @@ cors_config = CORSConfig(
 
 
 app = Litestar(
-    route_handlers=[login, get_user],
+    route_handlers=[login, logout, get_user],
     on_app_init=[session_auth.on_app_init],
     cors_config=cors_config,
     on_startup=[startup],
