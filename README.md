@@ -24,7 +24,7 @@ npm run dev
 
 Note: If NextJS starts with a port other than 3000, you'll have to update `app.py` in the root directory where it has `localhost:3000` to reflect the correct port. After updating, restart the backend server.
 
-## Logout Test (Resolved in 773ff2d70ab2e7b3fcdceaa31fad84de28666af6)
+## Logout Test
 
 ### Backend Logout
 Observe that the backend server properly destroys the cookie when logging out and thus prevents you from seeing protected data.
@@ -43,7 +43,8 @@ _Note: clear cookies to ensure this is a clean test_
 1. Observe that the cookie has _not_ been deleted.
 1. Return to [http://localhost:8000/schema/rapidoc#get-/user]("GetUser") and see that you still see the protected data.
 
-## Login Test (Resolved in 773ff2d70ab2e7b3fcdceaa31fad84de28666af6)
+## Login Test
+(Resolved in 773ff2d70ab2e7b3fcdceaa31fad84de28666af6)
 
 ### Backend Login
 Observe that the backend server allows you to access protected endpoints as much as you want.
